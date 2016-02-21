@@ -1,5 +1,6 @@
 package com.secretproject.helloworld;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,5 +41,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClick(View v){
+
+        // generate the random integers for r, g and b value
+        Random rand = new Random();
+
+        int r = rand.nextInt(255);
+        int g = rand.nextInt(255);
+        int b = rand.nextInt(255);
+
+        int backroundColor = Color.rgb(r, g, b);
+
+        int textColor = Color.rgb(255- r, 255 - g, 255 - b);
+
+        TextView tv = (TextView)findViewById(R.id.textView);
+        tv.setTextColor(textColor);
+
+        View someView = findViewById(R.id.mainLayout);
+        View root = someView.getRootView();
+        root.setBackgroundColor(backroundColor);
     }
 }
